@@ -45,8 +45,19 @@ void loop() {
 
     bme.read(pres, temp, hum, tempUnit, presUnit);
 
-    hc12.print("P"+int(pres*10)+"T"+int(temp*10)+"H"+int(hum*10));
-     
+    hc12.print("P");
+    hc12.print(int(pres*10));
+    hc12.print("T");
+    hc12.print(int(temp*10));
+    hc12.print("H");
+    hc12.print(int(hum*10));
+    
+    Serial.print("P");
+    Serial.print(int(pres*10));
+    Serial.print("\t T");
+    Serial.print(int(temp*10));
+    Serial.print("\t H");
+    Serial.println(int(hum*10));
   }
   
 
