@@ -4,6 +4,7 @@
 #include <BME280I2C.h>
 
 SoftwareSerial hc12(2,3);
+BME280I2C bme;
 
 boolean start;
 
@@ -24,6 +25,11 @@ void setup() {
     start = true;
   }
   
+  while (!bme.begin())
+  {
+    Serial.println("BME280 Non disponible");
+  }
+  
 
 
 }
@@ -32,7 +38,15 @@ void loop() {
   // put your main code here, to run repeatedly: 
   if (start == 1)
   {
-    /* code */  
+    float temp(NAN), hum(NAN), pres(NAN);
+
+    BME280::TempUnit tempUnit(BME280::TempUnit_Celsius);
+    BME280::PresUnit presUnit(BME280::PresUnit_hPa);
+
+    bme.read(pres, temp, hum, tempUnit, presUnit);
+
+    hc12.print("P"+int(pres*10)+"T"+int(temp*10)+"H"+int(hum*10));
+     
   }
   
 
