@@ -14,6 +14,9 @@ void setup() {
   Serial.begin(9600);
   hc12.begin(9600);  
 
+  Wire.begin();
+  bme.begin();
+
   Serial.println("Hello World");
 
   hc12.write("AT");
